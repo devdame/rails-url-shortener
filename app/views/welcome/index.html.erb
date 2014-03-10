@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Welcome to Your Dreams!</h1>
+    <h3>We'll shorten all of your (valid) URLs, just like Mom used to.</h3>
+    <p>Go ahead, give us something to shorten!</p>
+
+    <% if flash[:notice]%>
+      <h2><%= flash[:notice]%></h2>
+    <% end %>
+
+
+  <%= form_for([@user, @url]) do |f|%>
+    <%= f.label :url %>
+    <%= f.text_field :url, autofocus: true %>
+    <%= f.submit %>
+  <% end %>
+
+
+  <h3>URLs You Have Shortened:</h3>
+  <% @urls.each do |url| %>
+    <a href=<%="/#{url.shortened_url}"%>><%= url.listify %></a>
+    <br>
+  <% end %>
+
+</div>
