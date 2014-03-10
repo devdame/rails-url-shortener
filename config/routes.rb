@@ -5,10 +5,14 @@ RailsShortener::Application.routes.draw do
     resources :urls
   end
 
-  resources :urls
+  # resources :urls
 
 
   get ':short_url', to: 'urls#short_url'
+
+  get 'logout/users', to: 'users#logout'
+
+  post 'login/users', to: 'users#login'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -9,6 +9,7 @@ class UrlsController < ApplicationController
   end
 
   def create
+    # raise params.inspect
     @url = Url.new(url_params)
     if @url.save
       flash[:notice] = "You did it, dude!  Your shortened url is #{@url.shortened_url}"
@@ -21,7 +22,9 @@ class UrlsController < ApplicationController
   private
 
   def url_params
-    params.require(:url).permit(:url)
+    x = params.require(:url).permit(:url)
+    x[:user_id] = params[:user_id]
+    x
   end
 
 end
