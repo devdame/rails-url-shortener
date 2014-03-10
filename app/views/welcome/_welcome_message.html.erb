@@ -1,0 +1,12 @@
+<% if @user %>
+  <h1>Welcome to Your Dreams, <%= @user.username %>!</h1>
+<% else %>
+  <h1>Welcome to Your Dreams!</h1>
+<% end %>
+
+<h3>We'll shorten all of your (valid) URLs, just like Mom used to.</h3>
+<p>Go ahead, give us something to shorten!</p>
+
+<% if flash[:notice]%>
+  <h2><%= flash[:notice]%></h2>
+<% end %>

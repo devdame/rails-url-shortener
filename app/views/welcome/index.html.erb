@@ -1,60 +1,9 @@
 <div class="container">
+  <%= render "welcome_message" %>
   <% if @user %>
-    <h1>Welcome to Your Dreams, <%= @user.username %>!</h1>
-  <% else %>
-    <h1>Welcome to Your Dreams!</h1>
-  <% end %>
-    <h3>We'll shorten all of your (valid) URLs, just like Mom used to.</h3>
-    <p>Go ahead, give us something to shorten!</p>
-
-    <% if flash[:notice]%>
-      <h2><%= flash[:notice]%></h2>
-    <% end %>
-
-  <% if @user %>
-    <%= link_to("logout", logout_users_path) %>
-    <%= form_for [@user, @url] do |f|%>
-
-      <%= f.label :url %>
-      <%= f.text_field :url, autofocus: true %>
-      <%= f.submit %>
-    <% end %>
-
-    <h3>Your shortened URLs:</h3>
-      <% @user.urls.each do |url| %>
-        <a href=<%="/#{url.shortened_url}"%>><%= url.listify %></a>
-        <br>
-      <% end %>
-
+    <%= render "logged_in_view" %>
   <% else%>
-    <h1>WHY YOU NO LOG IN????</h1>
-    <h2>WE DO ALL THIS WORK AND YOU DON'T LOG IN? DISHONOR ON YOUR COW!</h2>
-
-    <%= link_to 'Make an account', new_user_path %>
-
-    <%= form_tag(action: 'login', method: 'post', controller: "users") do %>
-      <%= label_tag :username %>
-      <%= text_field_tag :username %>
-      <%= label_tag :password %>
-      <%= password_field_tag :password%>
-      <%= submit_tag "Log In" %>
-    <% end %>
-
-
+    <%= render "not_logged_in_view" %>
   <% end %>
-
-
-
-  <h3>All URLs in their shortened glory:</h3>
-
-  <% @urls.each do |url| %>
-    <a href=<%="/#{url.shortened_url}"%>><%= url.listify %></a>
-    <br>
-  <% end %>
-  <br>
-  <br>
-  <br>
-  <br>
-
-
+    <%= render "show_urls" %>
 </div>

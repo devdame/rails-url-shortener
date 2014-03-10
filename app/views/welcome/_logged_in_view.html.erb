@@ -1,0 +1,13 @@
+<%= link_to("logout", logout_users_path) %>
+<%= form_for [@user, @url] do |f|%>
+
+  <%= f.label :url %>
+  <%= f.text_field :url, autofocus: true %>
+  <%= f.submit %>
+<% end %>
+
+<h3>Your shortened URLs:</h3>
+  <% @user.urls.each do |url| %>
+    <a href=<%="/#{url.shortened_url}"%>><%= url.listify %></a>
+    <br>
+  <% end %>

@@ -1,0 +1,6 @@
+<h3>All URLs in their shortened glory:</h3>
+
+<% @urls.each do |url| %>
+  <a href=<%="/#{url.shortened_url}"%>><%= url.listify %></a>
+  <br>
+<% end %>

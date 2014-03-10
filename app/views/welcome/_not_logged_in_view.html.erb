@@ -1,0 +1,12 @@
+    <h1>WHY YOU NO LOG IN????</h1>
+    <h2>WE DO ALL THIS WORK AND YOU DON'T LOG IN? DISHONOR ON YOUR COW!</h2>
+
+    <%= link_to 'Make an account', new_user_path %>
+
+    <%= form_tag(action: 'login', method: 'post', controller: "users") do %>
+      <%= label_tag :username %>
+      <%= text_field_tag :username %>
+      <%= label_tag :password %>
+      <%= password_field_tag :password%>
+      <%= submit_tag "Log In" %>
+    <% end %>
