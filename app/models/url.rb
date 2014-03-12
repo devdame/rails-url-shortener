@@ -4,9 +4,12 @@ class Url < ActiveRecord::Base
   validate :validate_url
 
   def shorten_url
+    # CODE REVIEW: not protected against non-unique URLs
     self.shortened_url = rand(99).to_s.concat(('a'..'z').to_a.sample).concat(('a'..'z').to_a.sample).concat(rand(99).to_s).concat(('a'..'z').to_a.sample)
   end
 
+  # CODE REVIEW: this is better done as a helper. Then you can take advantage of
+  # Rail's URL generation helpers
   def to_url
     "http://oursite.#{shortened_url}"
   end
@@ -15,6 +18,8 @@ class Url < ActiveRecord::Base
     "#{to_url}   (#{url}) - Clicks: #{self.click_count}"
   end
 
+  # CODE REVIEW: for every errors.add here, I'd probably have a seperate 
+  # validate method
   def validate_url
     if self.url == "" || ! self.url.match(/.+\.\w{2,}/)
       return errors.add(:url, "This is not a valid web address!")
