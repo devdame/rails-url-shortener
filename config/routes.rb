@@ -10,6 +10,9 @@ RailsShortener::Application.routes.draw do
 
   get ':short_url', to: 'urls#short_url'
 
+  # CODE REVIEW: a common pattern here is to use a SessionsController for
+  # signin/signout
+  # http://ruby.railstutorial.org/chapters/sign-in-sign-out#top
   get 'logout/users', to: 'users#logout'
 
   post 'login/users', to: 'users#login'
